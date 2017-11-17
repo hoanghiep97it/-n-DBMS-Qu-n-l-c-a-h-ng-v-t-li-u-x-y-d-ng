@@ -11,7 +11,7 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
 {
     public class BA_ThongKe
     {
-        //Tao bien ket noi
+        //Tao bien ket noi;
         DALayer db = null;
         //Khoi tao ket noi
         public BA_ThongKe()
