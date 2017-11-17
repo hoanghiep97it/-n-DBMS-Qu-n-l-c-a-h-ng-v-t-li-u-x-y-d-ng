@@ -65,13 +65,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BAL\BA_ChiTietHoaDon.cs" />
     <Compile Include="BAL\BA_DangNhap.cs" />
     <Compile Include="BAL\BA_HoaDon.cs" />
     <Compile Include="BAL\BA_KhachHang.cs" />
     <Compile Include="BAL\BA_KiemKe.cs" />
-    <Compile Include="BAL\BA_NhanViencs.cs" />
+    <Compile Include="BAL\BA_NhaCungCap.cs" />
+    <Compile Include="BAL\BA_NhanVien.cs" />
     <Compile Include="BAL\BA_SanPham.cs" />
     <Compile Include="BAL\BA_ThongKe.cs" />
+    <Compile Include="BAL\BA_TaiKhoan.cs" />
     <Compile Include="DAL\DALayer.cs" />
     <Compile Include="DataSet1.Designer.cs">
       <AutoGen>True</AutoGen>

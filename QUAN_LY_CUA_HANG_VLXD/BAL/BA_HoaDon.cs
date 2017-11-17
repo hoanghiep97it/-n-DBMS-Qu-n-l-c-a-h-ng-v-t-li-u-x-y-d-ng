@@ -10,7 +10,7 @@ using QUAN_LY_CUA_HANG_VLXD.DAL;
 
 namespace QUAN_LY_CUA_HANG_VLXD.BAL
 {
-    class BA_HoaDon
+    public class BA_HoaDon
     {
         //Tao bien ket noi
         DALayer db = null;
@@ -20,36 +20,39 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
             db = new DALayer();
           
         }
-        //Lay thong tin nhan vien thong qua store LoadNhanVien ,tra ve 1 dataset
-        public DataSet LoadHoaDon(string MaHD)
-        {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_selectall", CommandType.Text);
-        }
-        //Lay thong tin nhan vien thong qua store LoadNhanVien ,tra ve 1 dataset
+      
         public DataSet ThemHoaDon(string MaHD, string MaKH, string MaNV , string Ngay, float ThanhTien)
         {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_insert", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_insert '"+MaHD+"','"+MaKH+"','"+MaNV+"','"+Ngay+"',"+ThanhTien+";", CommandType.Text);
         }
-        //Lay thong tin nhan vien thong qua store LoadNhanVien ,tra ve 1 dataset
+        
         public DataSet UpdateHoaDon(string MaHD, string MaKH, string MaNV, string Ngay, float ThanhTien)
         {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_update", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_update '" + MaHD + "','" + MaKH + "','" + MaNV + "','" + Ngay + "'," + ThanhTien + ";", CommandType.Text);
         }
         public DataSet DeleteHoaDon()
         {
             return db.ExecuteQueryDataSet("Execute SP_HoaDon_delete", CommandType.Text);
         }
+        public DataSet LoadHoaDon()
+        {
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_selectall", CommandType.Text);
+        }
+        public DataSet LoadHoaDon_Ma(string MaHD)
+        {
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byID '" + MaHD + "';", CommandType.Text);
+        }
         public DataSet LoadHoaDon_Ngay(string Ngay)
         {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byDay", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byDay '" + Ngay + "';", CommandType.Text);
         }
         public DataSet LoadHoaDon_Thang(string Thang)
         {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byThang", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byThang '" + Thang + "';", CommandType.Text);
         }
         public DataSet LoadHoaDon_Nam(string Nam)
         {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byNam", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byNam '" + Nam + "';", CommandType.Text);
         }
     }
 }

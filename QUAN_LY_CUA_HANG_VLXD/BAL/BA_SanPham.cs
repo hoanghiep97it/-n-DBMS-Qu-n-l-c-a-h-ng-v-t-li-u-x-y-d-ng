@@ -19,12 +19,28 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
             db = new DALayer();
           
         }
-        //Lay thong tin nhan vien thong qua store LoadNhanVien ,tra ve 1 dataset
+
+        public DataSet ThemSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan)
+        {
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_insert '"+MaSP+"','"+MaNCC+"','"+TenSP+"',"+SoLuong+",,'"+NgaySX+"',"+GiaBan+";", CommandType.Text);
+        }
+
+        public DataSet UpdateSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan)
+        {
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_update '"+MaSP+"','"+MaNCC+"','"+TenSP+"',"+SoLuong+",,'"+NgaySX+"',"+GiaBan+";", CommandType.Text);
+        }
+        public DataSet DeleteSanPham()
+        {
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_delete", CommandType.Text);
+        }
         public DataSet LoadSanPham()
         {
             return db.ExecuteQueryDataSet("Execute SP_SanPham_selectall", CommandType.Text);
         }
-
+        public DataSet LoadSanPham_Ma(string MaSP)
+        {
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_select_byID '"+MaSP+";", CommandType.Text);
+        }
     }
 
 }
