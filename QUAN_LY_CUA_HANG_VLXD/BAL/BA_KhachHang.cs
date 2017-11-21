@@ -19,31 +19,35 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
             db = new DALayer();
           
         }
-        
-        public DataSet ThemKhachHang(string MaKH, string TenKH, string GioiTinh, string DiaChi, string Phone, string Email)
+
+        public bool ThemKhachHang(string MaKH, string TenKH, string GioiTinh, string DiaChi, string Phone, string Email, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_KhachHang_insert '" + MaKH + "','" + TenKH + "','" + GioiTinh + "','" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_KhachHang_insert '" + MaKH + "','" + TenKH + "','" + GioiTinh + "','" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text, ref err);
         }
 
-        public DataSet UpdateKhachHang(string MaKH, string TenKH, string GioiTinh, string DiaChi, string Phone, string Email)
+        public bool UpdateKhachHang(string MaKH, string TenKH, string GioiTinh, string DiaChi, string Phone, string Email, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_KhachHang_update '" + MaKH + "','" + TenKH + "','" + GioiTinh + "','" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_KhachHang_update '" + MaKH + "','" + TenKH + "','" + GioiTinh + "','" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text, ref err);
         }
-        public DataSet DeleteKhachHang()
+        public bool DeleteKhachHang(string MaKH, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_KhachHang_delete", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_KhachHang_delete '"+MaKH+"';", CommandType.Text, ref err);
         }
         public DataSet LoadKhachHang()
         {
-            return db.ExecuteQueryDataSet("Execute SP_KhachHang_selectall", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_KhachHang_selectall", CommandType.Text, null);
         }
         public DataSet LoadKhachHang_Ma(string MaKH)
         {
-            return db.ExecuteQueryDataSet("Execute SP_KhachHang_select_byID '"+MaKH+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_KhachHang_select_byID '" + MaKH + "';", CommandType.Text, null);
         }
         public DataSet LoadKhachHang_Phone(string Phone)
         {
-            return db.ExecuteQueryDataSet("Execute SP_KhachHang_select_bySDT '"+Phone+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_KhachHang_select_bySDT '" + Phone + "';", CommandType.Text, null);
+        }
+        public int TongKhachHang(ref string err)
+        {
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text,ref err, null);
         }
     }
 }

@@ -20,26 +20,30 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
           
         }
 
-        public DataSet ThemTaiKhoan(string MaNV, string Username, string MaPQ, string Pass, string Email)
+        public bool ThemTaiKhoan(string MaNV, string Username, string MaPQ, string Pass, string Email, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_insert '"+MaNV+"','"+Username+"','"+MaPQ+"','"+Pass+"','"+Email+"';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_TaiKhoan_insert '" + MaNV + "','" + Username + "','" + MaPQ + "','" + Pass + "','" + Email + "';", CommandType.Text, ref err);
         }
 
-        public DataSet UpdateTaiKhoan(string MaNV, string Username, string MaPQ, string Pass, string Email)
+        public bool UpdateTaiKhoan(string MaNV, string Username, string MaPQ, string Pass, string Email, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_update '"+MaNV+"','"+Username+"','"+MaPQ+"','"+Pass+"','"+Email+"';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_TaiKhoan_update '" + MaNV + "','" + Username + "','" + MaPQ + "','" + Pass + "','" + Email + "';", CommandType.Text, ref err);
         }
-        public DataSet DeleteTaiKhoan()
+        public bool DeleteTaiKhoan(string MaNV, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_delete", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_TaiKhoan_delete '"+MaNV+"';", CommandType.Text, ref err);
         }
         public DataSet LoadTaiKhoan()
         {
-            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_selectall", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_selectall", CommandType.Text, null);
         }
         public DataSet LoadTaiKhoan_Ma(string MaNV)
         {
-            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_select_byID '"+MaNV+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_select_byID '" + MaNV + "';", CommandType.Text, null);
+        }
+        public int TongTaiKhoan(ref string err)
+        {
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLTaiKhoan() from TB_TaiKhoan", CommandType.Text,ref err, null);
         }
     }
 }

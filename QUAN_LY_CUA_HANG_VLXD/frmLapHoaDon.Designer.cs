@@ -29,12 +29,25 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLapHoaDon));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
+            this.btnXuat = new DevExpress.XtraEditors.SimpleButton();
+            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
+            this.btnSua = new DevExpress.XtraEditors.SimpleButton();
+            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.txtSDT = new System.Windows.Forms.TextBox();
             this.CheckNu = new System.Windows.Forms.RadioButton();
             this.CheckNam = new System.Windows.Forms.RadioButton();
             this.dataSP = new System.Windows.Forms.DataGridView();
             this.dataHoaDon = new System.Windows.Forms.DataGridView();
+            this.dtSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtNhaCungCap = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtDonVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dtThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtMa = new DevExpress.XtraEditors.TextEdit();
             this.txtMaNV = new System.Windows.Forms.TextBox();
             this.txtNgayTao = new DevExpress.XtraEditors.DateEdit();
@@ -61,26 +74,15 @@
             this.simpleLabelItem2 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.simpleLabelItem3 = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem6 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.txtTongTien = new System.Windows.Forms.TextBox();
             this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem3 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.btnSua = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnThem = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem12 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.btnXuat = new DevExpress.XtraEditors.SimpleButton();
             this.layoutControlItem13 = new DevExpress.XtraLayout.LayoutControlItem();
             this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem6 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.dtThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtSL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtDonVi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtDonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtNhaCungCap = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dtSP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataSP)).BeginInit();
@@ -145,6 +147,43 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
+            // btnXuat
+            // 
+            this.btnXuat.Image = ((System.Drawing.Image)(resources.GetObject("btnXuat.Image")));
+            this.btnXuat.Location = new System.Drawing.Point(765, 512);
+            this.btnXuat.Name = "btnXuat";
+            this.btnXuat.Size = new System.Drawing.Size(108, 22);
+            this.btnXuat.StyleController = this.layoutControl1;
+            this.btnXuat.TabIndex = 37;
+            this.btnXuat.Text = "Xuất";
+            // 
+            // btnThem
+            // 
+            this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
+            this.btnThem.Location = new System.Drawing.Point(665, 512);
+            this.btnThem.Name = "btnThem";
+            this.btnThem.Size = new System.Drawing.Size(86, 22);
+            this.btnThem.StyleController = this.layoutControl1;
+            this.btnThem.TabIndex = 36;
+            this.btnThem.Text = "Thêm";
+            // 
+            // btnSua
+            // 
+            this.btnSua.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.Image")));
+            this.btnSua.Location = new System.Drawing.Point(558, 512);
+            this.btnSua.Name = "btnSua";
+            this.btnSua.Size = new System.Drawing.Size(93, 22);
+            this.btnSua.StyleController = this.layoutControl1;
+            this.btnSua.TabIndex = 35;
+            this.btnSua.Text = "Sửa";
+            // 
+            // txtTongTien
+            // 
+            this.txtTongTien.Location = new System.Drawing.Point(265, 512);
+            this.txtTongTien.Name = "txtTongTien";
+            this.txtTongTien.Size = new System.Drawing.Size(183, 20);
+            this.txtTongTien.TabIndex = 34;
+            // 
             // txtSDT
             // 
             this.txtSDT.Location = new System.Drawing.Point(973, 45);
@@ -175,6 +214,14 @@
             // dataSP
             // 
             this.dataSP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataSP.DefaultCellStyle = dataGridViewCellStyle1;
             this.dataSP.Location = new System.Drawing.Point(895, 176);
             this.dataSP.Name = "dataSP";
             this.dataSP.Size = new System.Drawing.Size(356, 313);
@@ -192,11 +239,55 @@
             this.dtDonVi,
             this.dtSL,
             this.dtThanhTien});
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Tahoma", 8.25F);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(32)))), ((int)(((byte)(31)))), ((int)(((byte)(53)))));
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataHoaDon.DefaultCellStyle = dataGridViewCellStyle2;
             this.dataHoaDon.Location = new System.Drawing.Point(12, 176);
             this.dataHoaDon.Name = "dataHoaDon";
             this.dataHoaDon.Size = new System.Drawing.Size(861, 313);
             this.dataHoaDon.TabIndex = 29;
             this.dataHoaDon.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataHoaDon_CellContentClick);
+            // 
+            // dtSP
+            // 
+            this.dtSP.FillWeight = 70F;
+            this.dtSP.HeaderText = "Mã SP";
+            this.dtSP.Name = "dtSP";
+            // 
+            // TenSP
+            // 
+            this.TenSP.HeaderText = "Tên Sản Phẩm";
+            this.TenSP.Name = "TenSP";
+            // 
+            // dtNhaCungCap
+            // 
+            this.dtNhaCungCap.HeaderText = "Mã nhà cung cấp";
+            this.dtNhaCungCap.Name = "dtNhaCungCap";
+            // 
+            // dtDonGia
+            // 
+            this.dtDonGia.HeaderText = "Đơn giá";
+            this.dtDonGia.Name = "dtDonGia";
+            // 
+            // dtDonVi
+            // 
+            this.dtDonVi.HeaderText = "Đơn vị";
+            this.dtDonVi.Name = "dtDonVi";
+            // 
+            // dtSL
+            // 
+            this.dtSL.HeaderText = "Số Lượng";
+            this.dtSL.Name = "dtSL";
+            // 
+            // dtThanhTien
+            // 
+            this.dtThanhTien.HeaderText = "Thành tiền";
+            this.dtThanhTien.Name = "dtThanhTien";
             // 
             // txtMa
             // 
@@ -461,13 +552,6 @@
             this.layoutControlItem6.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem6.TextVisible = false;
             // 
-            // txtTongTien
-            // 
-            this.txtTongTien.Location = new System.Drawing.Point(265, 512);
-            this.txtTongTien.Name = "txtTongTien";
-            this.txtTongTien.Size = new System.Drawing.Size(183, 20);
-            this.txtTongTien.TabIndex = 34;
-            // 
             // layoutControlItem10
             // 
             this.layoutControlItem10.Control = this.txtTongTien;
@@ -485,16 +569,6 @@
             this.emptySpaceItem3.Size = new System.Drawing.Size(176, 26);
             this.emptySpaceItem3.TextSize = new System.Drawing.Size(0, 0);
             // 
-            // btnSua
-            // 
-            this.btnSua.Image = ((System.Drawing.Image)(resources.GetObject("btnSua.Image")));
-            this.btnSua.Location = new System.Drawing.Point(558, 512);
-            this.btnSua.Name = "btnSua";
-            this.btnSua.Size = new System.Drawing.Size(93, 22);
-            this.btnSua.StyleController = this.layoutControl1;
-            this.btnSua.TabIndex = 35;
-            this.btnSua.Text = "Sửa";
-            // 
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.btnSua;
@@ -504,16 +578,6 @@
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
             // 
-            // btnThem
-            // 
-            this.btnThem.Image = ((System.Drawing.Image)(resources.GetObject("btnThem.Image")));
-            this.btnThem.Location = new System.Drawing.Point(665, 512);
-            this.btnThem.Name = "btnThem";
-            this.btnThem.Size = new System.Drawing.Size(86, 22);
-            this.btnThem.StyleController = this.layoutControl1;
-            this.btnThem.TabIndex = 36;
-            this.btnThem.Text = "Thêm";
-            // 
             // layoutControlItem12
             // 
             this.layoutControlItem12.Control = this.btnThem;
@@ -522,16 +586,6 @@
             this.layoutControlItem12.Size = new System.Drawing.Size(90, 26);
             this.layoutControlItem12.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem12.TextVisible = false;
-            // 
-            // btnXuat
-            // 
-            this.btnXuat.Image = ((System.Drawing.Image)(resources.GetObject("btnXuat.Image")));
-            this.btnXuat.Location = new System.Drawing.Point(765, 512);
-            this.btnXuat.Name = "btnXuat";
-            this.btnXuat.Size = new System.Drawing.Size(108, 22);
-            this.btnXuat.StyleController = this.layoutControl1;
-            this.btnXuat.TabIndex = 37;
-            this.btnXuat.Text = "Xuất";
             // 
             // layoutControlItem13
             // 
@@ -573,42 +627,6 @@
             this.emptySpaceItem2.Name = "emptySpaceItem2";
             this.emptySpaceItem2.Size = new System.Drawing.Size(1243, 19);
             this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // dtThanhTien
-            // 
-            this.dtThanhTien.HeaderText = "Thành tiền";
-            this.dtThanhTien.Name = "dtThanhTien";
-            // 
-            // dtSL
-            // 
-            this.dtSL.HeaderText = "Số Lượng";
-            this.dtSL.Name = "dtSL";
-            // 
-            // dtDonVi
-            // 
-            this.dtDonVi.HeaderText = "Đơn vị";
-            this.dtDonVi.Name = "dtDonVi";
-            // 
-            // dtDonGia
-            // 
-            this.dtDonGia.HeaderText = "Đơn giá";
-            this.dtDonGia.Name = "dtDonGia";
-            // 
-            // dtNhaCungCap
-            // 
-            this.dtNhaCungCap.HeaderText = "Mã nhà cung cấp";
-            this.dtNhaCungCap.Name = "dtNhaCungCap";
-            // 
-            // TenSP
-            // 
-            this.TenSP.HeaderText = "Tên Sản Phẩm";
-            this.TenSP.Name = "TenSP";
-            // 
-            // dtSP
-            // 
-            this.dtSP.FillWeight = 70F;
-            this.dtSP.HeaderText = "Mã SP";
-            this.dtSP.Name = "dtSP";
             // 
             // frmLapHoaDon
             // 

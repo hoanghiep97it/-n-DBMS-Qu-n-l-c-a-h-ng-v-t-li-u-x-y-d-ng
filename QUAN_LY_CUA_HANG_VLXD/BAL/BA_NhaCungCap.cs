@@ -20,26 +20,30 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
           
         }
 
-        public DataSet ThemNhaCungCap(string MaNCC, string TenNCC, string DiaChi, string Phone, string Email, string TinhTrang)
+        public bool ThemNhaCungCap(string MaNCC, string TenNCC, string DiaChi, string Phone, string Email, string TinhTrang, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_insert '" + MaNCC + "','" + TenNCC + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_insert '" + MaNCC + "','" + TenNCC + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text, ref err);
         }
 
-        public DataSet UpdateNhaCungCap(string MaNCC, string TenNCC, string DiaChi, string Phone, string Email, string TinhTrang)
+        public bool UpdateNhaCungCap(string MaNCC, string TenNCC, string DiaChi, string Phone, string Email, string TinhTrang, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_update '" + MaNCC + "','" + TenNCC + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_update '" + MaNCC + "','" + TenNCC + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text, ref err);
         }
-        public DataSet DeleteNhaCungCap()
+        public bool DeleteNhaCungCap(string MaNCC, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_delete", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_delete '"+MaNCC+"';", CommandType.Text, ref err);
         }
         public DataSet LoadNhaCungCap()
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_selectall", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_selectall", CommandType.Text, null);
         }
         public DataSet LoadNhaCungCap_Ma(string MaNCC)
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_select_byID '" + MaNCC + "';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_select_byID '" + MaNCC + "';", CommandType.Text, null);
+        }
+        public int TongNhaCungCap(ref string err)
+        {
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLNhaCungCap() from TB_NhaCungCap", CommandType.Text,ref err, null);
         }
     }
 }

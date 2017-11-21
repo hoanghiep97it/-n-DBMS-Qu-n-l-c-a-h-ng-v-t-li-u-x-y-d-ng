@@ -20,38 +20,38 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
           
         }
 
-        public DataSet ThemChiTietHD(string MaHD,string MaSP,string TenNCC,int SoLuong,float GiaBan,string NgayTao)
+        public bool ThemChiTietHD(string MaHD, string MaSP, string TenNCC, int SoLuong, float GiaBan, string NgayTao, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_insert '" + MaHD + "','" + MaSP + "','" + TenNCC + "'," + SoLuong + "," + GiaBan + ",'" + NgayTao + "';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_ChiTietHD_insert '" + MaHD + "','" + MaSP + "','" + TenNCC + "'," + SoLuong + "," + GiaBan + ",'" + NgayTao + "';", CommandType.Text, ref err);
         }
 
-        public DataSet UpdateChiTietHD(string MaHD, string MaSP, string TenNCC, int SoLuong, float GiaBan, string NgayTao)
+        public bool UpdateChiTietHD(string MaHD, string MaSP, string TenNCC, int SoLuong, float GiaBan, string NgayTao, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_update '" + MaHD + "','" + MaSP + "','" + TenNCC + "'," + SoLuong + "," + GiaBan + ",'" + NgayTao + "';", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_ChiTietHD_update '" + MaHD + "','" + MaSP + "','" + TenNCC + "'," + SoLuong + "," + GiaBan + ",'" + NgayTao + "';", CommandType.Text, ref err);
         }
-        public DataSet DeleteChiTietHD()
+        public bool DeleteChiTietHD(string MaHD, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_delete", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_ChiTietHD_delete ", CommandType.Text, ref err);
         }
         public DataSet LoadChiTietHD()
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_selectall", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_selectall", CommandType.Text, null);
         }
         public DataSet LoadChiTietHD_Ma(string MaHD)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byID '"+MaHD+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byID '" + MaHD + "';", CommandType.Text, null);
         }
         public DataSet LoadChiTietHD_Ngay(string Ngay)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byDay '"+Ngay+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byDay '" + Ngay + "';", CommandType.Text, null);
         }
         public DataSet LoadChiTietHD_Thang(string Thang)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byThang '"+Thang+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byThang '" + Thang + "';", CommandType.Text, null);
         }
         public DataSet LoadChiTietHD_Nam(string Nam)
         {
-            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byNam '"+Nam+"';", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_ChiTietHD_select_byNam '" + Nam + "';", CommandType.Text, null);
         }
     }
 }

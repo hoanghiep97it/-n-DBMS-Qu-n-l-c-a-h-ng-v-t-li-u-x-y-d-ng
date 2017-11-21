@@ -20,26 +20,30 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
           
         }
 
-        public DataSet ThemSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan)
+        public bool ThemSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_SanPham_insert '"+MaSP+"','"+MaNCC+"','"+TenSP+"',"+SoLuong+",,'"+NgaySX+"',"+GiaBan+";", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_SanPham_insert '" + MaSP + "','" + MaNCC + "','" + TenSP + "'," + SoLuong + ",,'" + NgaySX + "'," + GiaBan + ";", CommandType.Text, ref err);
         }
 
-        public DataSet UpdateSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan)
+        public bool UpdateSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_SanPham_update '"+MaSP+"','"+MaNCC+"','"+TenSP+"',"+SoLuong+",,'"+NgaySX+"',"+GiaBan+";", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_SanPham_update '" + MaSP + "','" + MaNCC + "','" + TenSP + "'," + SoLuong + ",,'" + NgaySX + "'," + GiaBan + ";", CommandType.Text, ref err);
         }
-        public DataSet DeleteSanPham()
+        public bool DeleteSanPham(string MaSP, ref string err)
         {
-            return db.ExecuteQueryDataSet("Execute SP_SanPham_delete", CommandType.Text);
+            return db.MyExecuteNonQuery("Execute SP_SanPham_delete '"+MaSP+"';", CommandType.Text, ref err);
         }
         public DataSet LoadSanPham()
         {
-            return db.ExecuteQueryDataSet("Execute SP_SanPham_selectall", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_selectall", CommandType.Text, null);
         }
         public DataSet LoadSanPham_Ma(string MaSP)
         {
-            return db.ExecuteQueryDataSet("Execute SP_SanPham_select_byID '"+MaSP+";", CommandType.Text);
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_select_byID '" + MaSP + ";", CommandType.Text, null);
+        }
+        public int TongSanPham(ref string err)
+        {
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLSanPham() from TB_SanPham", CommandType.Text,ref err, null);
         }
     }
 

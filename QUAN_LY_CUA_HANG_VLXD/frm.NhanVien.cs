@@ -28,5 +28,10 @@ namespace QUAN_LY_CUA_HANG_VLXD
         {
 
         }
+
+        private void txtMaNV_EditValueChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
