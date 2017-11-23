@@ -22,16 +22,16 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
 
         public bool ThemKhachHang(string MaKH, string TenKH, string GioiTinh, string DiaChi, string Phone, string Email, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_KhachHang_insert '" + MaKH + "','" + TenKH + "','" + GioiTinh + "','" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_KhachHang_insert '" + MaKH + "',N'" + TenKH + "',N'" + GioiTinh + "',N'" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text, ref err);
         }
 
         public bool UpdateKhachHang(string MaKH, string TenKH, string GioiTinh, string DiaChi, string Phone, string Email, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_KhachHang_update '" + MaKH + "','" + TenKH + "','" + GioiTinh + "','" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_KhachHang_update '" + MaKH + "',N'" + TenKH + "',N'" + GioiTinh + "',N'" + DiaChi + "','" + Phone + "','" + Email + "';", CommandType.Text, ref err);
         }
         public bool DeleteKhachHang(string MaKH, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_KhachHang_delete '"+MaKH+"';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_KhachHang_delete '" + MaKH + "';", CommandType.Text, ref err);
         }
         public DataSet LoadKhachHang()
         {

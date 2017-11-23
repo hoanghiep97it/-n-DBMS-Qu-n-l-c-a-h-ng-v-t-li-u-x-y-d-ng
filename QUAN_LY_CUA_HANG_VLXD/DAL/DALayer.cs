@@ -61,6 +61,39 @@ namespace QUAN_LY_CUA_HANG_VLXD.DAL
             }
             return f;
         }
+        //public bool MyExcuteNonQuery(string strSQL, CommandType cmt, ref string error,
+        //    params SqlParameter[] para)
+        //{
+        //    bool f = false;
+        //    try
+        //    {
+        //        if (conn.State == ConnectionState.Open)
+        //            conn.Close();
+        //        conn.Open();
+        //        comm.Parameters.Clear();
+        //        comm.CommandType = cmt;
+        //        comm.CommandText = strSQL;
+        //        //foreach (SqlParameter p in para)
+        //        //{
+        //        //    comm.Parameters.Add(p);
+        //        //}
+        //        try
+        //        {
+        //            comm.ExecuteNonQuery();
+        //            f = true;
+        //        }
+        //        catch (Exception e)
+        //        {
+        //            error = e.Message;
+        //        }
+
+        //    }
+        //    catch (SqlException e)
+        //    {
+        //        error = e.Message;
+        //    }
+        //    return f;
+        //}
         public int MyExecuteScalar(string strsql, CommandType cmt, ref string error, params SqlParameter[] p)
         {
             int temp = 0;

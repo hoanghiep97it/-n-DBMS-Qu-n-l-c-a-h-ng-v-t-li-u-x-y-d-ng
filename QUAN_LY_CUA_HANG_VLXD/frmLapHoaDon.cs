@@ -16,22 +16,26 @@ namespace QUAN_LY_CUA_HANG_VLXD
     public partial class frmLapHoaDon : DevExpress.XtraEditors.XtraForm
     {
         BA_SanPham s = new BA_SanPham();
-        DataTable sanPham = null;
+        DataSet ds;
         public frmLapHoaDon()
         {
             InitializeComponent();
+            ds = new DataSet();
         }
 
         void LoadSP()
         {
             try
             {
-                sanPham = new DataTable();
-                sanPham.Clear();
-                DataSet ds = s.LoadSanPham();
-                sanPham = ds.Tables[0];
-                dataSP.DataSource = sanPham;
-                dataSP.AutoResizeColumns();
+                //sanPham = new DataTable();
+                //sanPham.Clear();
+                //DataSet ds = s.LoadSanPham();
+                //sanPham = ds.Tables[0];
+                //dataSP.DataSource = sanPham;
+                //dataSP.AutoResizeColumns();
+                //
+                ds = s.LoadSanPham();
+                dataSP.DataSource = ds.Tables[0];
             }
             catch (SqlException)
             {
