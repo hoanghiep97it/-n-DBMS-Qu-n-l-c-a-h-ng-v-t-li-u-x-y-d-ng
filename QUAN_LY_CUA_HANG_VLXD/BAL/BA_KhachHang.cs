@@ -14,6 +14,7 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         //Tao bien ket noi
         DALayer db = null;
         //Khoi tao ket noi
+        // git sfsdfdsfsfdghfg
         public BA_KhachHang()
         {
             db = new DALayer();
@@ -47,7 +48,8 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         }
         public int TongKhachHang(ref string err)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text,ref err, null);
+            //return db.MyExecuteScalar("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text, ref err, null);
+            return db.MyExecuteNonQuery("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text, ref err);
         }
     }
 }

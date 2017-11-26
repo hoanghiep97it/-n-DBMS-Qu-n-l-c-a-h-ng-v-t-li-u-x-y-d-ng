@@ -18,26 +18,34 @@ namespace QUAN_LY_CUA_HANG_VLXD
         BA_KhachHang kh = new BA_KhachHang();
         DataSet ds;
         bool Them;
-        bool ThemSP;
         bool Sua;
-        bool Xoa;
         string err;
         public frmKhachHang()
         {
             InitializeComponent();
             ds = new DataSet();
         }
-        private void Khao()
+        private void MoKhoa()
         {
-            btnluu.Enabled = false;
-            btnsua.Enabled = false;
-            btnthem.Enabled = false;
-            btnxoa.Enabled = false;
-            btnHuy.Enabled = false;
+            btnluu.Enabled = true;
+            btnsua.Enabled = true;
+            btnthem.Enabled = true;
+            btnxoa.Enabled = true;
+            btnHuy.Enabled = true;
         }
-        private void Xoa()
+        private void XoaText()
         {
-
+            txtMaKH.ResetText();
+            txtTenKH.ResetText();
+            txtGioiTinh.ResetText();
+            txtDiaChi.ResetText();
+            txtEmail.ResetText();
+            txtPhone.ResetText();
+        }
+        private void Co()
+        {
+            Them = false;
+            Sua = false;
         }
         void LoadKhachHang()
         {
@@ -46,9 +54,6 @@ namespace QUAN_LY_CUA_HANG_VLXD
                 ds = kh.LoadKhachHang();
                 dataKhachHang.DataSource = ds.Tables[0];
                 dataKhachHang.AutoResizeColumns();
-                //dataKhachHang_CellClick(null, null);
-
-
             }
             catch (SqlException)
             {
@@ -57,30 +62,87 @@ namespace QUAN_LY_CUA_HANG_VLXD
         }
         private void btnthem_Click(object sender, EventArgs e)
         {
+            MoKhoa();
+            btnthem.Enabled = false;
+            btnxoa.Enabled = false;
+            btnsua.Enabled = false;
+            dataKhachHang.Enabled = false;
+            XoaText();
+            Co();
             Them = true;
-
-            kh.ThemKhachHang(txtMaKH.Text, txtTenKH.Text, txtGioiTinh.Text, txtDiaChi.Text, txtPhone.Text, txtEmail.Text, ref err);
-            LoadKhachHang();
 
         }
 
         private void btnxoa_Click(object sender, EventArgs e)
         {
+            Co();
+            try
+            {
+                kh.DeleteKhachHang(txtMaKH.Text, ref err);
+                LoadKhachHang();
+                MessageBox.Show("Đã xóa xong!");
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Không xóa được. Lỗi rồi!");
+            }
+            
         }
 
         private void btnsua_Click(object sender, EventArgs e)
         {
-
+            MoKhoa();
+            btnthem.Enabled = false;
+            btnxoa.Enabled = false;
+            btnsua.Enabled = false;
+            dataKhachHang.Enabled = false;
+            txtMaKH.Enabled = false;
+            Co();
+            Sua = true;
         }
 
         private void btnluu_Click(object sender, EventArgs e)
         {
-
+            if(Them==true)
+            {
+                try
+                {
+                    kh.ThemKhachHang(txtMaKH.Text, txtTenKH.Text, txtGioiTinh.Text, txtDiaChi.Text, txtPhone.Text, txtEmail.Text, ref err);
+                    dataKhachHang.Enabled = true;
+                    LoadKhachHang();
+                    MessageBox.Show("Đã thêm xong!");
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("Không thêm được. Lỗi rồi!");
+                }
+            }
+            else
+            {
+                if (Sua == true)
+                {
+                    try
+                    {
+                        kh.UpdateKhachHang(txtMaKH.Text, txtTenKH.Text, txtGioiTinh.Text, txtDiaChi.Text, txtPhone.Text, txtEmail.Text, ref err);
+                        dataKhachHang.Enabled = true;
+                        LoadKhachHang();
+                        MessageBox.Show("Đã cập nhập!");
+                    }
+                    catch (SqlException)
+                    {
+                        MessageBox.Show("Không cập nhập được. Lỗi rồi!");
+                    }
+                }
+            }
+            MoKhoa();
+            dataKhachHang.Enabled = true;
+            Co();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-
+            XoaText();
+            txtMaKH.Text = "ffdfhfh";
         }
 
         private void frmKhachHang_Load(object sender, EventArgs e)
@@ -104,7 +166,9 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-
+            XoaText();
+            MoKhoa();
+            Co();
         }
     }
 }
