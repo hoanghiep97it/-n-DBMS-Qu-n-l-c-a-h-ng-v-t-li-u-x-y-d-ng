@@ -46,10 +46,10 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_KhachHang_select_bySDT '" + Phone + "';", CommandType.Text, null);
         }
-        public int TongKhachHang(ref string err)
-        {
-            //return db.MyExecuteScalar("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text, ref err, null);
-            return db.MyExecuteNonQuery("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text, ref err);
-        }
+        //public int TongKhachHang(ref string err)
+        //{
+        //    //return db.MyExecuteScalar("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text, ref err, null);
+        //    return db.MyExecuteNonQuery("select distinct dbo.FT_DemSLKhachHang() from TB_KhachHang", CommandType.Text, ref err);
+        //}
     }
 }

@@ -22,12 +22,12 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
 
         public bool ThemNhanVien(string MaNV, string Username, string MaPQ, string TenNV, string GioiTinh, string NgaySinh, string DiaChi, string Phone, string Email, string TinhTrang, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_NhanVien_insert '" + MaNV + "','" + Username + "','" + MaPQ + "','" + TenNV + "','" + GioiTinh + "','" + NgaySinh + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_NhanVien_insert '" + MaNV + "','" + Username + "','" + MaPQ + "',N'" + TenNV + "',N'" + GioiTinh + "','" + NgaySinh + "',N'" + DiaChi + "','" + Phone + "','" + Email + "',N'" + TinhTrang + "';", CommandType.Text, ref err);
         }
 
         public bool UpdateNhanVien(string MaNV, string Username, string MaPQ, string TenNV, string GioiTinh, string NgaySinh, string DiaChi, string Phone, string Email, string TinhTrang, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_NhanVien_update '" + MaNV + "','" + Username + "','" + MaPQ + "','" + TenNV + "','" + GioiTinh + "','" + NgaySinh + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_NhanVien_update '" + MaNV + "','" + Username + "','" + MaPQ + "',N'" + TenNV + "',N'" + GioiTinh + "',N'" + NgaySinh + "',N'" + DiaChi + "','" + Phone + "','" + Email + "',N'" + TinhTrang + "';", CommandType.Text, ref err);
         }
         public bool DeleteNhanVien(string MaNV, ref string err)
         {

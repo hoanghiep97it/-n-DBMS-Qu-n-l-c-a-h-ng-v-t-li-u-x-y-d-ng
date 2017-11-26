@@ -80,7 +80,17 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnNhanVien_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            Form CfrmNV = checkForm(typeof(frmNhanVien));
+            if (CfrmNV != null)
+            {
+                CfrmNV.Activate();
+            }
+            else
+            {
+                frmNhanVien frNCC = new frmNhanVien();
+                frNCC.MdiParent = this;
+                frNCC.Show();
+            }
         }
 
         private void btnNhaCungCap_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

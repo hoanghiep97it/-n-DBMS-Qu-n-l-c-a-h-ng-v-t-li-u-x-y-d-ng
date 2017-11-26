@@ -47,6 +47,22 @@ namespace QUAN_LY_CUA_HANG_VLXD
             Them = false;
             Sua = false;
         }
+        private void chon()
+        {
+            txtMaKH.DataBindings.Clear();
+            txtTenKH.DataBindings.Clear();
+            txtGioiTinh.DataBindings.Clear();
+            txtDiaChi.DataBindings.Clear();
+            txtPhone.DataBindings.Clear();
+            txtEmail.DataBindings.Clear();
+
+            txtMaKH.DataBindings.Add("text", ds.Tables[0], "MaKH");
+            txtTenKH.DataBindings.Add("text", ds.Tables[0], "TenKH");
+            txtGioiTinh.DataBindings.Add("text", ds.Tables[0], "GioiTinh");
+            txtDiaChi.DataBindings.Add("text", ds.Tables[0], "DiaChi");
+            txtPhone.DataBindings.Add("text", ds.Tables[0], "Phone");
+            txtEmail.DataBindings.Add("text", ds.Tables[0], "Email");
+        }
         void LoadKhachHang()
         {
             try
@@ -135,8 +151,10 @@ namespace QUAN_LY_CUA_HANG_VLXD
                 }
             }
             MoKhoa();
+            txtMaKH.Enabled = true;
             dataKhachHang.Enabled = true;
             Co();
+            chon();
         }
 
         private void btnTimKiem_Click(object sender, EventArgs e)
@@ -148,19 +166,7 @@ namespace QUAN_LY_CUA_HANG_VLXD
         private void frmKhachHang_Load(object sender, EventArgs e)
         {
             LoadKhachHang();
-            txtMaKH.DataBindings.Clear();
-            txtTenKH.DataBindings.Clear();
-            txtGioiTinh.DataBindings.Clear();
-            txtDiaChi.DataBindings.Clear();
-            txtPhone.DataBindings.Clear();
-            txtEmail.DataBindings.Clear();
-
-            txtMaKH.DataBindings.Add("text",ds.Tables[0],"MaKH");
-            txtTenKH.DataBindings.Add("text", ds.Tables[0], "TenKH");
-            txtGioiTinh.DataBindings.Add("text", ds.Tables[0], "GioiTinh");
-            txtDiaChi.DataBindings.Add("text", ds.Tables[0], "DiaChi");
-            txtPhone.DataBindings.Add("text", ds.Tables[0], "Phone");
-            txtEmail.DataBindings.Add("text", ds.Tables[0], "Email");
+            chon();
 
         }
 
@@ -169,6 +175,10 @@ namespace QUAN_LY_CUA_HANG_VLXD
             XoaText();
             MoKhoa();
             Co();
+            txtMaKH.Enabled = true;
+            dataKhachHang.Enabled = true;
+            chon();
+
         }
     }
 }
