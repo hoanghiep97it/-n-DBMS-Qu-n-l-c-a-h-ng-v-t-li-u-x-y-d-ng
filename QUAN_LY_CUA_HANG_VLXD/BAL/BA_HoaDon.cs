@@ -46,29 +46,29 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byDay '" + Ngay + "';", CommandType.Text, null);
         }
-        public DataSet LoadHoaDon_Thang(string Thang)
+        public DataSet LoadHoaDon_Thang(string Thang,string nam)
         {
-            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byThang '" + Thang + "';", CommandType.Text, null);
+            return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byThang '" + Thang + "','"+nam+"';", CommandType.Text, null);
         }
         public DataSet LoadHoaDon_Nam(string Nam)
         {
             return db.ExecuteQueryDataSet("Execute SP_HoaDon_select_byNam '" + Nam + "';", CommandType.Text, null);
         }
-        public int DemSoHD( ref string err)
+        public int DemSoHD( )
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon() from TB_HoaDon", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon() from TB_HoaDon", CommandType.Text);
         }
-        public int DemSoHD_Ngay(string ngay, ref string err)
+        public int DemSoHD_Ngay(string ngay)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon_Ngay('"+ngay+"') from TB_HoaDon", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon_Ngay('"+ngay+"') from TB_HoaDon", CommandType.Text);
         }
-        public int DemSoHD_Thang(string thang, ref string err)
+        public int DemSoHD_Thang(string thang,string nam)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon_Thang('"+thang+"') from TB_HoaDon", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon_Thang('" + thang + "','" + nam + "') from TB_HoaDon", CommandType.Text);
         }
-        public int DemSoHD_Nam(string nam, ref string err)
+        public int DemSoHD_Nam(string nam)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon_Nam('"+nam+"') from TB_HoaDon", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLHoaDon_Nam('"+nam+"') from TB_HoaDon", CommandType.Text);
         }
     }
 }

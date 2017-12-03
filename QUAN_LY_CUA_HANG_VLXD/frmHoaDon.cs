@@ -35,6 +35,8 @@ namespace QUAN_LY_CUA_HANG_VLXD
                 ds = HD.LoadHoaDon();
                 dataHoaDon.DataSource = ds.Tables[0];
                 dataHoaDon.AutoResizeColumns();
+                int sl = HD.DemSoHD();
+                txtSoHD.Text = sl.ToString();
             }
             catch (SqlException)
             {
@@ -51,14 +53,18 @@ namespace QUAN_LY_CUA_HANG_VLXD
                ds = HD.LoadHoaDon_Ngay(dtpNgayTao.Value.ToString("MM/dd/yyyy"));
                dataHoaDon.DataSource = ds.Tables[0];
                dataHoaDon.AutoResizeColumns();
+               int sl = HD.DemSoHD_Ngay(dtpNgayTao.Value.ToString("MM/dd/yyyy"));
+               txtSoHD.Text = sl.ToString();
            }
            else
            {
                if (thang.Checked == true)
                {
-                   ds=HD.LoadHoaDon_Thang(dtpNgayTao.Value.Month.ToString());
+                   ds = HD.LoadHoaDon_Thang(dtpNgayTao.Value.Month.ToString(), dtpNgayTao.Value.Year.ToString());
                    dataHoaDon.DataSource = ds.Tables[0];
                    dataHoaDon.AutoResizeColumns();
+                   int sl = HD.DemSoHD_Thang(dtpNgayTao.Value.Month.ToString(), dtpNgayTao.Value.Year.ToString());
+                   txtSoHD.Text = sl.ToString();
                }
                else
                {
@@ -67,6 +73,8 @@ namespace QUAN_LY_CUA_HANG_VLXD
                        ds=HD.LoadHoaDon_Nam(dtpNgayTao.Value.Year.ToString());
                        dataHoaDon.DataSource = ds.Tables[0];
                        dataHoaDon.AutoResizeColumns();
+                       int sl = HD.DemSoHD_Nam(dtpNgayTao.Value.Year.ToString());
+                       txtSoHD.Text = sl.ToString();
                    }
                }
            }
@@ -94,7 +102,7 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
        private void frmHoaDon_Load(object sender, EventArgs e)
        {
-           
+           LoadHD();
        }
 
        private void dataHoaDon_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -117,9 +125,9 @@ namespace QUAN_LY_CUA_HANG_VLXD
            txtDiaChi.DataBindings.Add("text", kh.Tables[0], "DiaChi");
            txtSDT.DataBindings.Add("text", kh.Tables[0], "Phone");
 
-           string MaHD = dataHoaDon.CurrentRow.Cells[0].Value.ToString();
+           //string MaHD = dataHoaDon.CurrentRow.Cells[0].Value.ToString();
            BA_ChiTietHoaDon CT = new BA_ChiTietHoaDon();
-           CTHD = CT.LoadChiTietHD_Ma(MaHD);
+           CTHD = CT.LoadChiTietHD_Ma(txtMaHD.Text);
            dataChiTietHoaDon.DataSource = CTHD.Tables[0];
 
 

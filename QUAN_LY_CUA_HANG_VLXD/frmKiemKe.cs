@@ -25,6 +25,19 @@ namespace QUAN_LY_CUA_HANG_VLXD
             CTHD = new DataSet();
         }
 
+        void LoadKiemKe()
+        {
+            try
+            {
+                ds = KK.LoadKiemKe();
+                dataKiemKe.DataSource = ds.Tables[0];
+                dataKiemKe.AutoResizeColumns();
+            }
+            catch (SqlException)
+            {
+                MessageBox.Show("Loi !!! Khong load duoc du lieu nhan vien");
+            }
+        }
         private void btnTK_Click(object sender, EventArgs e)
         {
             if (Ngay.Checked == true)
@@ -67,15 +80,23 @@ namespace QUAN_LY_CUA_HANG_VLXD
             txtSanPham.DataBindings.Add("text", ds.Tables[0], "MaSP");
             txtNgayTao.DataBindings.Add("text", ds.Tables[0], "NgayTao");
             txtSL.DataBindings.Add("text", ds.Tables[0], "SoLuong");
+
+            
         }
         private void dataThongKe_CellMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             chon();
-            DateTime NgayTao = Convert.ToDateTime(dataKiemKe.CurrentRow.Cells[3].Value.ToString());
-            CTHD = KK.LoadKiemKe_Ngay_SP(NgayTao.ToString(), dataKiemKe.CurrentRow.Cells[2].Value.ToString());
-                dataBan.DataSource = CTHD.Tables[0];
-                dataBan.AutoResizeColumns();
+            CTHD = KK.LoadChiTietKiemKe(txtMaKK.Text, dtNgayTao.Value.ToString("MM/dd/yyyy"));
+            dataBan.DataSource = CTHD.Tables[0];
+            dataBan.AutoResizeColumns();
 
+
+        }
+
+        private void frmKiemKe_Load(object sender, EventArgs e)
+        {
+            LoadKiemKe();
+            chon();
         }
 
 

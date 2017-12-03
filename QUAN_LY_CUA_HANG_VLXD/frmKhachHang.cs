@@ -70,6 +70,8 @@ namespace QUAN_LY_CUA_HANG_VLXD
                 ds = kh.LoadKhachHang();
                 dataKhachHang.DataSource = ds.Tables[0];
                 dataKhachHang.AutoResizeColumns();
+                int sl = kh.TongKhachHang();
+                txtTongKH.Text = sl.ToString();
             }
             catch (SqlException)
             {
@@ -159,8 +161,11 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnTimKiem_Click(object sender, EventArgs e)
         {
-            XoaText();
-            txtMaKH.Text = "ffdfhfh";
+            ds = kh.LoadKhachHang_Ma(txtMaKH_TK.Text);
+            dataKhachHang.DataSource = ds.Tables[0];
+            dataKhachHang.AutoResizeColumns();
+            chon();
+            txtTongKH.ResetText();
         }
 
         private void frmKhachHang_Load(object sender, EventArgs e)
@@ -172,6 +177,7 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
+            LoadKhachHang();
             XoaText();
             MoKhoa();
             Co();

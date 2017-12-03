@@ -56,6 +56,10 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_KiemKe_select_byDay_SP '" + Ngay + "','" + MaSP + "';", CommandType.Text);
         }
+        public DataSet LoadChiTietKiemKe( string MaSP,string Ngay)
+        {
+            return db.ExecuteQueryDataSet("select * from dbo.FT_KiemKeChiTietHoaDon('"+MaSP+"','"+Ngay+"')", CommandType.Text);
+        }
         public DataSet LoadKiemKe_Thang_SP(string Thang, string MaSP)
         {
             return db.ExecuteQueryDataSet("Execute SP_KiemKe_select_byThang_SP '" + Thang + "','" + MaSP + "';", CommandType.Text);
@@ -64,33 +68,34 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_KiemKe_select_byNam_SP '" + Nam + "','" + MaSP + "';", CommandType.Text);
         }
-        public int TongSPBanRa(ref string err)
+        public int TongSPBanRa()
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan() from TB_ChiTietHD", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan() from TB_ChiTietHD", CommandType.Text);
         }
-        public int TongSPBanRa_Ngay(string ngay, ref string err)
+        public int TongSPBanRa_Ngay(string ngay)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Ngay('" + ngay + "') from TB_ChiTietHD", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Ngay('" + ngay + "') from TB_ChiTietHD", CommandType.Text);
         }
-        public int TongSPBanRa_Thang(string Thang, ref string err)
+        public int TongSPBanRa_Thang(string Thang)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Thang('" + Thang + "') from TB_ChiTietHD", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Thang('" + Thang + "') from TB_ChiTietHD", CommandType.Text);
         }
-        public int TongSPBanRa_Nam(string Nam, ref string err)
+        public int TongSPBanRa_Nam(string Nam)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Nam('" + Nam + "') from TB_ChiTietHD", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Nam('" + Nam + "') from TB_ChiTietHD", CommandType.Text);
         }
-        public int TongSPBanRa_Ngay_SP(string ngay,string ma, ref string err)
+        public int TongSPBanRa_Ngay_SP(string ngay,string ma)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Ngay_SP('" + ngay + "','" + ma + "') from TB_ChiTietHD", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Ngay_SP('" + ngay + "','" + ma + "') from TB_ChiTietHD", CommandType.Text);
         }
-        public int TongSPBanRa_Thang_SP(string Thang, string ma, ref string err)
+        public int TongSPBanRa_Thang_SP(string Thang, string ma)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Thang_SP('" + Thang + "' ,'"+ma+"') from TB_ChiTietHD", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Thang_SP('" + Thang + "' ,'"+ma+"') from TB_ChiTietHD", CommandType.Text);
         }
-        public int TongSPBanRa_Nam_SP(string Nam, string ma, ref string err)
+        public int TongSPBanRa_Nam_SP(string Nam, string ma)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Nam_SP('" + Nam + "','" + ma + "') from TB_ChiTietHD", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongSanPhamBan_Nam_SP('" + Nam + "','" + ma + "') from TB_ChiTietHD", CommandType.Text);
         }
+
     }
 }

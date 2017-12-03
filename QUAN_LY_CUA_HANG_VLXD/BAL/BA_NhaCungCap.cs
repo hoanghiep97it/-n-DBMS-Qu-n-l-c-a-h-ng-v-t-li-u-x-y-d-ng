@@ -22,12 +22,12 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
 
         public bool ThemNhaCungCap(string MaNCC, string TenNCC, string DiaChi, string Phone, string Email, string TinhTrang, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_insert '" + MaNCC + "','" + TenNCC + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_insert '" + MaNCC + "',N'" + TenNCC + "',N'" + DiaChi + "','" + Phone + "','" + Email + "',N'" + TinhTrang + "';", CommandType.Text, ref err);
         }
 
         public bool UpdateNhaCungCap(string MaNCC, string TenNCC, string DiaChi, string Phone, string Email, string TinhTrang, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_update '" + MaNCC + "','" + TenNCC + "','" + DiaChi + "','" + Phone + "','" + Email + "','" + TinhTrang + "';", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_NhaCungCap_update '" + MaNCC + "',N'" + TenNCC + "',N'" + DiaChi + "','" + Phone + "','" + Email + "',N'" + TinhTrang + "';", CommandType.Text, ref err);
         }
         public bool DeleteNhaCungCap(string MaNCC, ref string err)
         {
@@ -41,9 +41,9 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_NhaCungCap_select_byID '" + MaNCC + "';", CommandType.Text, null);
         }
-        public int TongNhaCungCap(ref string err)
+        public int TongNhaCungCap()
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLNhaCungCap() from TB_NhaCungCap", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLNhaCungCap() from TB_NhaCungCap", CommandType.Text);
         }
     }
 }

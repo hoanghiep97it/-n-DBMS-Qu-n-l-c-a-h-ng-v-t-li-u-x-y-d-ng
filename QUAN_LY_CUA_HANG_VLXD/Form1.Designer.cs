@@ -323,9 +323,7 @@
             // 
             // ribbonPageGroup1
             // 
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnDangNhap, true);
             this.ribbonPageGroup1.ItemLinks.Add(this.btnDangXuat, true);
-            this.ribbonPageGroup1.ItemLinks.Add(this.btnThoat, true);
             this.ribbonPageGroup1.Name = "ribbonPageGroup1";
             this.ribbonPageGroup1.Text = "Trạng Thái";
             // 

@@ -20,14 +20,14 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
           
         }
 
-        public bool ThemSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan, ref string err)
+        public bool ThemSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string NgaySX, float GiaBan, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_SanPham_insert '" + MaSP + "','" + MaNCC + "','" + TenSP + "'," + SoLuong + ",,'" + NgaySX + "'," + GiaBan + ";", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_SanPham_insert '" + MaSP + "','" + MaNCC + "',N'" + TenSP + "'," + SoLuong + ",'NULL','" + NgaySX + "'," + GiaBan + ";", CommandType.Text, ref err);
         }
 
-        public bool UpdateSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string Anh, string NgaySX, int GiaBan, ref string err)
+        public bool UpdateSanPham(string MaSP, string MaNCC, string TenSP, int SoLuong, string NgaySX, float GiaBan, ref string err)
         {
-            return db.MyExecuteNonQuery("Execute SP_SanPham_update '" + MaSP + "','" + MaNCC + "','" + TenSP + "'," + SoLuong + ",,'" + NgaySX + "'," + GiaBan + ";", CommandType.Text, ref err);
+            return db.MyExecuteNonQuery("Execute SP_SanPham_update '" + MaSP + "','" + MaNCC + "',N'" + TenSP + "'," + SoLuong + ",'NULL','" + NgaySX + "'," + GiaBan + ";", CommandType.Text, ref err);
         }
         public bool DeleteSanPham(string MaSP, ref string err)
         {
@@ -39,11 +39,11 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         }
         public DataSet LoadSanPham_Ma(string MaSP)
         {
-            return db.ExecuteQueryDataSet("Execute SP_SanPham_select_byID '" + MaSP + ";", CommandType.Text, null);
+            return db.ExecuteQueryDataSet("Execute SP_SanPham_select_byID '" + MaSP + "';", CommandType.Text, null);
         }
-        public int TongSanPham(ref string err)
+        public int TongSanPham()
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLSanPham() from TB_SanPham", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLSanPham() from TB_SanPham", CommandType.Text);
         }
     }
 

@@ -32,6 +32,8 @@ namespace QUAN_LY_CUA_HANG_VLXD
                 ds = nv.LoadNhanVien();
                 dataNhanVien.DataSource = ds.Tables[0];
                 dataNhanVien.AutoResizeColumns();
+                int sl = nv.TongNhanVien(ref err);
+                txtSL_NV.Text = sl.ToString();
             }
             catch (SqlException)
             {
@@ -131,6 +133,7 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnHuy_Click_1(object sender, EventArgs e)
         {
+            LoadNV();
             MoKhoa();
             txtMaNV.Enabled = true;
             dataNhanVien.Enabled = true;
@@ -199,7 +202,12 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnHuy_Click(object sender, EventArgs e)
         {
-            
+            LoadNV();
+            dataNhanVien.Enabled = true;
+            txtMaNV.Enabled = true;
+            MoKhoa();
+            Co();
+            chon();
         }
 
         private void frmNhanVien_Load(object sender, EventArgs e)
@@ -207,6 +215,15 @@ namespace QUAN_LY_CUA_HANG_VLXD
             // TODO: This line of code loads data into the 'qUAN_LY_CUA_HANG_VAT_LIEU_XAY_DUNGDataSet.TB_NhanVien' table. You can move, or remove it, as needed.
             LoadNV();
             chon();
+        }
+
+        private void btnTK_Click(object sender, EventArgs e)
+        {
+            ds = nv.LoadNhanVien_Ma(txtMaTK.Text);
+            dataNhanVien.DataSource = ds.Tables[0];
+            dataNhanVien.AutoResizeColumns();
+            chon();
+            txtSL_NV.ResetText();
         }
         
         

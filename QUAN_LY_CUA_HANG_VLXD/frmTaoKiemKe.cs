@@ -22,5 +22,10 @@ namespace QUAN_LY_CUA_HANG_VLXD
         {
 
         }
+
+        private void simpleButton3_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

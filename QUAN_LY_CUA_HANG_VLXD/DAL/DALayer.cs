@@ -10,12 +10,39 @@ namespace QUAN_LY_CUA_HANG_VLXD.DAL
 {
     public class DALayer
     {
-        string ketnoi = "Data Source = DESKTOP-F5AQID7;Initial Catalog=CUA_HANG_VAT_LIEU_XAY_DUNG_NGHIA_HIEP;Integrated Security=True;";
-        //string ketnoi ="Server= 192.168.100.6;Database=CUA_HANG_VAT_LIEU_XAY_DUNG_NGHIA_HIEP;User Id=hiep; Password=123";
-        //string ketnoi = "Server= 192.168.43.125;Database=CUA_HANG_VAT_LIEU_XAY_DUNG_NGHIA_HIEP;User Id=hiep; Password=123";
         SqlConnection conn = null;
         SqlCommand comm = null;
         SqlDataAdapter da = null;
+        string ketnoi = "Data Source = DESKTOP-F5AQID7;Initial Catalog=CUA_HANG_VAT_LIEU_XAY_DUNG_NGHIA_HIEP;Integrated Security=True;";
+        //string ketnoi ="Server= 192.168.100.6;Database=CUA_HANG_VAT_LIEU_XAY_DUNG_NGHIA_HIEP;User Id=hiep; Password=123";
+        //string ketnoi = "Server= 192.168.43.125;Database=CUA_HANG_VAT_LIEU_XAY_DUNG_NGHIA_HIEP;User Id=hiep; Password=123";
+        
+        static string strKetNoi = "";
+        public bool accesssDB(string ip, string csdl ,string us, string pw)
+        {
+
+            strKetNoi = "Server= " + ip + "; Database="+csdl+";" +
+                          "User Id =" + us + "; Password=" + pw + ";";
+            conn = new SqlConnection(strKetNoi);
+            comm = conn.CreateCommand();
+            try
+            {
+                if (conn.State == ConnectionState.Open)
+                {
+                    conn.Close();
+                }
+                conn.Open();
+                if (conn.State == ConnectionState.Open)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
         public DALayer()
         {
             conn = new SqlConnection(ketnoi);
@@ -28,7 +55,6 @@ namespace QUAN_LY_CUA_HANG_VLXD.DAL
                 conn.Close();
 
             conn.Open();
-            //Command.Parameters.Clear();
             comm.CommandText = strSql;
             comm.CommandType = cmt;
             da = new SqlDataAdapter(comm);
@@ -61,71 +87,43 @@ namespace QUAN_LY_CUA_HANG_VLXD.DAL
             }
             return f;
         }
-        //public bool MyExcuteNonQuery(string strSQL, CommandType cmt, ref string error,
-        //    params SqlParameter[] para)
+        //public int MyExecuteScalar(string strsql, CommandType cmt, ref string error)
         //{
-        //    bool f = false;
+        //    int temp = 0;
+        //    if (conn.State == ConnectionState.Open)
+        //        conn.Close();
+        //    conn.Open();
+        //    comm.Parameters.Clear();
+        //    comm.CommandText = strsql;
+        //    comm.CommandType = cmt;
         //    try
         //    {
-        //        if (conn.State == ConnectionState.Open)
-        //            conn.Close();
-        //        conn.Open();
-        //        comm.Parameters.Clear();
-        //        comm.CommandType = cmt;
-        //        comm.CommandText = strSQL;
-        //        //foreach (SqlParameter p in para)
-        //        //{
-        //        //    comm.Parameters.Add(p);
-        //        //}
-        //        try
-        //        {
-        //            comm.ExecuteNonQuery();
-        //            f = true;
-        //        }
-        //        catch (Exception e)
-        //        {
-        //            error = e.Message;
-        //        }
+        //        temp = (int)comm.ExecuteScalar();
 
         //    }
         //    catch (SqlException e)
         //    {
         //        error = e.Message;
         //    }
-        //    return f;
+        //    finally
+        //    {
+        //        conn.Close();
+        //    }
+        //    return temp;
         //}
-        public int MyExecuteScalar(string strsql, CommandType cmt, ref string error, params SqlParameter[] p)
+
+        public int MyExecuteScalar(string strsql, CommandType cmt)
         {
             int temp = 0;
             if (conn.State == ConnectionState.Open)
-
                 conn.Close();
             conn.Open();
             comm.Parameters.Clear();
             comm.CommandText = strsql;
-            comm.CommandType = cmt;
-
-
-
-            foreach (SqlParameter i in p)
-
-                comm.Parameters.Add(i);
-            try
-            {
-                temp = (int)comm.ExecuteScalar();
-
-            }
-            catch (SqlException e)
-            {
-                error = e.Message;
-            }
-            finally
-            {
+            comm.CommandType = cmt;           
+                temp = (int)comm.ExecuteScalar();           
                 conn.Close();
-            }
-            return temp;
-
-
+                return temp;
         }
     }
 }

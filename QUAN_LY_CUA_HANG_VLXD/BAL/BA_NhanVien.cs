@@ -35,15 +35,16 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         }
         public DataSet LoadNhanVien()
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhanVien_selectall", CommandType.Text, null);
+            return db.ExecuteQueryDataSet("Execute SP_NhanVien_selectall", CommandType.Text);
         }
         public DataSet LoadNhanVien_Ma(string MaNV)
         {
-            return db.ExecuteQueryDataSet("Execute SP_NhanVien_select_byID '" + MaNV + "';", CommandType.Text, null);
+            return db.ExecuteQueryDataSet("Execute SP_NhanVien_select_byID '" + MaNV + "';", CommandType.Text);
         }
         public int TongNhanVien(ref string err)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLNhanVien() from TB_NhanVien", CommandType.Text,ref err, null);
+            int nv=db.MyExecuteScalar("select distinct dbo.FT_DemSLNhanVien() from TB_NhanVien", CommandType.Text);
+            return nv;
         }
     }
 }

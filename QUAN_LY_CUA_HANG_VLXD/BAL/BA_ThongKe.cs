@@ -56,21 +56,21 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_ThongKe_select_byNam '" + Nam + "';", CommandType.Text, null);
         }
-        public float TongThuNhap(ref string err)
+        public float TongThuNhap()
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap() from TB_HoaDon", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap() from TB_HoaDon", CommandType.Text);
         }
-        public float ThuNhap_Ngay(string ngay, ref string err)
+        public float ThuNhap_Ngay(string ngay)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap_Ngay('" + ngay + "') from TB_HoaDon", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap_Ngay('" + ngay + "') from TB_HoaDon", CommandType.Text);
         }
-        public float ThuNhap_Thang(string Thang, ref string err)
+        public float ThuNhap_Thang(string Thang)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap_Thang('" + Thang + "') from TB_HoaDon", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap_Thang('" + Thang + "') from TB_HoaDon", CommandType.Text);
         }
-        public float ThuNhap_Nam(string Nam, ref string err)
+        public float ThuNhap_Nam(string Nam)
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap_Nam('" + Nam + "') from TB_HoaDon", CommandType.Text, ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_TongThuNhap_Nam('" + Nam + "') from TB_HoaDon", CommandType.Text);
         }
     }
 }

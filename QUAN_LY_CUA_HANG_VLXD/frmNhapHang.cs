@@ -11,16 +11,11 @@ using DevExpress.XtraEditors;
 
 namespace QUAN_LY_CUA_HANG_VLXD
 {
-    public partial class frmThongKe : DevExpress.XtraEditors.XtraForm
+    public partial class frmNhapHang : DevExpress.XtraEditors.XtraForm
     {
-        public frmThongKe()
+        public frmNhapHang()
         {
             InitializeComponent();
-        }
-
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-
         }
     }
 }

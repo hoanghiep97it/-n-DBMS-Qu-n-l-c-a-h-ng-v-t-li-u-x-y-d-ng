@@ -40,7 +40,9 @@ namespace QUAN_LY_CUA_HANG_VLXD
 
         private void btnDangXuat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)
         {
-
+            frmMain giaodien = new frmMain();
+            giaodien.Close();
+            this.Close();
         }
 
         private void btnThoat_ItemClick(object sender, DevExpress.XtraBars.ItemClickEventArgs e)

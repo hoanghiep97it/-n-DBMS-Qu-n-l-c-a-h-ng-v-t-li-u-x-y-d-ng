@@ -41,9 +41,9 @@ namespace QUAN_LY_CUA_HANG_VLXD.BAL
         {
             return db.ExecuteQueryDataSet("Execute SP_TaiKhoan_select_byID '" + MaNV + "';", CommandType.Text, null);
         }
-        public int TongTaiKhoan(ref string err)
+        public int TongTaiKhoan()
         {
-            return db.MyExecuteScalar("select distinct dbo.FT_DemSLTaiKhoan() from TB_TaiKhoan", CommandType.Text,ref err, null);
+            return db.MyExecuteScalar("select distinct dbo.FT_DemSLTaiKhoan() from TB_TaiKhoan", CommandType.Text);
         }
     }
 }

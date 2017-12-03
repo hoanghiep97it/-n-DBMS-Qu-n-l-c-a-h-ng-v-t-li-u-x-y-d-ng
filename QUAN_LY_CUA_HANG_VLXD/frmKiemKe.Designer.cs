@@ -438,6 +438,7 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "frmKiemKe";
             this.Text = "THỐNG KÊ";
+            this.Load += new System.EventHandler(this.frmKiemKe_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataBan)).EndInit();
